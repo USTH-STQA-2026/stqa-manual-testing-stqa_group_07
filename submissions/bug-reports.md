@@ -1,96 +1,56 @@
-# Bug Reports — Báo cáo lỗi
+# Bug Reports — ABC Library Borrowing Management System
 
-> **Hướng dẫn**: Tạo 1 mục bug cho mỗi TC có kết quả **Fail**.
-> Xem [examples/sample-bug-report.md](../examples/sample-bug-report.md) để hiểu cách viết bug report tốt.
-> Mỗi bug cần: tiêu đề mô tả hành vi lỗi, bước tái hiện, expected vs actual, severity + giải thích.
-
-| Thông tin | |
-|---|---|
-| **Nhóm** | `<!-- Tên nhóm -->` |
-| **Ngày báo cáo** | `<!-- DD/MM/YYYY -->` |
+**Group:** STQA_Group_07  
+**Date:** 28/05/2026
 
 ---
 
-## BUG-01
+## BUG-01: Member can borrow more than the 3-book limit
 
-| Thuộc tính | Chi tiết |
-|-----------|---------|
-| **Mã lỗi** | BUG-01 |
-| **TC liên quan** | `<!-- TC-xx -->` |
-| **REQ liên quan** | `<!-- REQ-xx -->` |
-| **Mức độ** | `<!-- High / Medium / Low -->` |
-| **Người phát hiện** | `<!-- Họ tên thành viên -->` |
-| **Ngày phát hiện** | `<!-- DD/MM/YYYY -->` |
-| **Trạng thái** | `<!-- Open / Closed -->` |
+**Severity:** High  
+**Priority:** High  
+**Date Found:** 28/05/2026
 
-**Tiêu đề:**
-`<!-- Mô tả hành vi lỗi cụ thể -->`
+### Description
+The system allows members to borrow more than the maximum limit of **3 books** at the same time, violating the requirement in REQ-04.
 
-**Môi trường:**
-- Trình duyệt: Chrome `<!-- version -->`
-- Hệ điều hành: `<!-- OS -->`
-- Ngôn ngữ giao diện: Tiếng Việt
+### Steps to Reproduce
+1. Login with a member account (`ba.nguyen@email.com`)
+2. Successfully borrow 3 books
+3. Try to borrow a 4th book
+4. The system allows the borrow to succeed
 
-**Điều kiện tiên quyết:**
-`<!-- VD: Trang đăng nhập đã mở, dữ liệu đã reset -->`
+### Expected Result
+The system should reject the 4th book and display a message that the borrowing limit has been reached.
 
-**Bước tái hiện:**
-1. `<!-- Bước 1 -->`
-2. `<!-- Bước 2 -->`
-3. `<!-- Bước 3 -->`
+### Actual Result
+The system allows the 4th book to be borrowed successfully. The member is currently borrowing **4 books**.
 
-**Kết quả mong đợi:**
-`<!-- Kết quả đúng theo SRS -->`
-
-**Kết quả thực tế:**
-`<!-- Kết quả hệ thống thật sự trả về -->`
-
-**Tác động:**
-`<!-- VD: Vi phạm quy tắc nghiệp vụ cốt lõi, cho phép mượn vượt giới hạn -->`
-
-**Minh chứng:**
-`<!-- Đính kèm ảnh chụp màn hình nếu có -->`
-
-**Đề xuất xử lý:**
-`<!-- Gợi ý cách sửa lỗi nếu có -->` 
+**Screenshot:**
+![BUG-01](screenshots/bug01_mượn_4_sach.png)
 
 ---
 
-## BUG-02
+## BUG-02: System shows incorrect error message for Suspended member
 
-| Thuộc tính | Chi tiết |
-|-----------|---------|
-| **Mã lỗi** | BUG-02 |
-| **TC liên quan** | `<!-- TC-xx -->` |
-| **REQ liên quan** | `<!-- REQ-xx -->` |
-| **Mức độ** | `<!-- High / Medium / Low -->` |
-| **Người phát hiện** | `<!-- Họ tên thành viên -->` |
-| **Ngày phát hiện** | `<!-- DD/MM/YYYY -->` |
-| **Trạng thái** | `<!-- Open / Closed -->` |
+**Severity:** High  
+**Priority:** High  
+**Date Found:** 28/05/2026
 
-**Tiêu đề:**
-`<!-- Mô tả hành vi lỗi -->`
+### Description
+When a **Suspended** member tries to borrow a book, the system incorrectly displays the message **"Member has expired"** instead of the correct reason "Suspended". The system fails to distinguish between "Suspended" and "Expired" status.
 
-**Bước tái hiện:**
-1. `<!-- -->`
-2. `<!-- -->`
-3. `<!-- -->`
+### Steps to Reproduce
+1. Reset data to initial state
+2. Login with suspended account (`cu.le@email.com`)
+3. Try to borrow an available book
+4. The system shows incorrect error message
 
-**Kết quả mong đợi:**
-`<!-- -->`
+### Expected Result
+The system should reject the borrow and display a message related to **"Suspended"** status.
 
-**Kết quả thực tế:**
-`<!-- -->`
+### Actual Result
+The system displays incorrect message: **"Member has expired. Cannot borrow book."**
 
-**Tác động:**
-`<!-- -->`
-
-**Minh chứng:**
-`<!-- -->`
-
-**Đề xuất xử lý:**
-`<!-- -->`
-
----
-
-<!-- Copy template BUG trên để thêm BUG-03, BUG-04, ... cho mỗi TC Fail -->
+**Screenshot:**
+![BUG-02](screenshots/bug02_sai_thong_bao_tam_ngung.png)

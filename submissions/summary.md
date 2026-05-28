@@ -1,93 +1,80 @@
-# Test Summary — Báo cáo tổng hợp kiểm thử
+# Summary Report — Manual Testing for ABC Library System
 
-> **Hướng dẫn**: Đây là hoạt động **Quality Assurance** — bạn đánh giá chất lượng tổng thể của phần mềm, không chỉ liệt kê lỗi.
-
----
-
-## 1. Thông tin nhóm
-
-| Mục | Thông tin |
-|-----|----------|
-| **Nhóm** | `<!-- Tên nhóm -->` |
-| **Lớp** | `<!-- VD: SE001.P11 -->` |
-| **Ngày báo cáo** | `<!-- DD/MM/YYYY -->` |
-| **Hệ thống kiểm thử** | https://stqa.rbc.vn — v1.0 |
+**Group:** STQA_Group_07  
+**Class:** ICT  
+**Semester:** HK2 2025-2026  
+**Submission Date:** 28/05/2026  
+**Main Tester:** Hà Hiệp Hùng (Team Leader)
 
 ---
 
-## 2. Tổng quan kết quả
+## 1. Test Execution Overview
 
-| Chỉ số | Giá trị |
-|--------|---------|
-| Tổng số test case | `<!-- -->` |
-| Pass | `<!-- -->` |
-| Fail | `<!-- -->` |
-| Blocked | `<!-- -->` |
-| Not Run | `<!-- -->` |
-| **Tỷ lệ Pass** | `<!-- xx% -->` |
-| **Số bug phát hiện** | `<!-- -->` |
+| Criteria                        | Quantity   |
+|---------------------------------|------------|
+| Total Test Cases Executed       | 15         |
+| Test Cases Passed               | 13         |
+| Test Cases Failed               | 2          |
+| Pass Rate                       | **86.7%**  |
 
-### Phân bổ theo nhóm chức năng
-
-| Nhóm chức năng | TC | Pass | Fail | Bug | Đánh giá |
-|---------------|-----|------|------|-----|---------|
-| | | | | | |
-
-### Phân bổ bug theo mức độ
-
-| Mức độ | Số lượng | Bug IDs |
-|--------|---------|---------|
-| High | | |
-| Medium | | |
-| Low | | |
+**Testing Scope:** REQ-01 to REQ-08 (focused on Borrow/Return functions and Authorization).
 
 ---
 
-## 3. Kỹ thuật thiết kế đã sử dụng
+## 2. Bug Summary
 
-| Kỹ thuật | Áp dụng cho REQ nào? | Số TC sử dụng | Giải thích cách áp dụng |
-|----------|---------------------|---------------|------------------------|
-| | | | |
+| Bug ID   | Short Description                                   | Severity | Module          |
+|----------|-----------------------------------------------------|----------|-----------------|
+| BUG-01   | Member can borrow more than the 3-book limit        | High     | Borrow Book     |
+| BUG-02   | Wrong error message for Suspended member            | High     | Borrow Book     |
 
----
-
-## 4. Phân tích chất lượng phần mềm
-
-### 4.1. Điểm mạnh
-`<!-- Liệt kê các chức năng hoạt động tốt -->`
-
-### 4.2. Điểm yếu
-`<!-- Liệt kê các vấn đề nghiêm trọng -->`
+**Comments:**  
+Found 2 High severity bugs in the core module (Borrow Book). The system does not properly enforce business rules.
 
 ---
 
-## 5. Đề xuất ưu tiên sửa lỗi
+## 3. System Quality Evaluation
 
-> 💡 Đây là phần **Quality Assurance**: bạn không chỉ tìm lỗi mà còn **đề xuất thứ tự ưu tiên** sửa chữa và đánh giá tác động.
-> Nêu rõ tiêu chí ưu tiên: dựa vào **severity** (mức độ nghiêm trọng kỹ thuật) và/hoặc **priority** (mức độ ưu tiên kinh doanh).
+**Strengths:**
+- User-friendly and intuitive interface.
+- Search function works well (case-insensitive).
+- Basic login and authorization function properly.
+- Return book feature works correctly.
 
-| Thứ tự | Bug | Mức độ | Lý do ưu tiên |
-|--------|-----|--------|---------------|
-| | | | |
+**Weaknesses:**
+- Borrow Book module does not properly enforce business rules (3-book limit, distinction between Suspended and Expired status).
+- Error handling is unclear in some boundary cases.
 
----
-
-## 6. Kết luận
-
-`<!-- Đánh giá tổng thể: Hệ thống có sẵn sàng phát hành không? Tại sao? -->`
-
----
-
-## 7. Bài học rút ra (Tùy chọn)
-
-`<!-- Nhóm bạn học được gì từ quá trình kiểm thử này? -->`
+**Overall Assessment:** The system is at **Average to Good** level. Needs significant improvement in the core borrowing business logic.
 
 ---
 
-## 8. Khai báo sử dụng AI (Tùy chọn)
+## 4. Lessons Learned
 
-> Nếu nhóm có sử dụng công cụ AI (ChatGPT, Copilot, Gemini...), hãy ghi rõ bên dưới. Khai báo trung thực **không ảnh hưởng điểm** — đây là kỹ năng minh bạch trong nghề.
+- Reading the SRS carefully before writing test cases helps define accurate Expected Results.
+- Combining multiple test design techniques (EP, BVA, Decision Table) helps discover more defects.
+- Always reset data before executing important test cases to ensure independence.
+- A good bug report must include clear Steps to Reproduce and supporting screenshots.
 
-| Công cụ AI | Dùng cho phần nào | Bạn đã kiểm tra/chỉnh sửa thế nào |
-|------------|-------------------|-----------------------------------|
-| | | |
+---
+
+## 5. Recommendations for Improvement
+
+**For Development Team:**
+- Implement validation to limit borrowing to a maximum of 3 books.
+- Clearly distinguish error messages between "Suspended" and "Expired" member status.
+- Add confirmation dialog before borrowing a book.
+- Improve user-friendly error messages.
+
+**For Testing/QA:**
+- Create more diverse and comprehensive test data.
+- Use Decision Table for all complex business rules.
+- Perform Regression Testing after bug fixes.
+
+---
+
+**Conclusion:**  
+Through this assignment, the team has gained practical experience in the full manual testing process — from reading SRS to designing test cases, executing tests, reporting bugs, and evaluating software quality. This is a very useful hands-on lesson for the STQA course.
+
+---
+
