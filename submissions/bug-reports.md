@@ -26,8 +26,9 @@ The system should reject the 4th book and display a message that the borrowing l
 ### Actual Result
 The system allows the 4th book to be borrowed successfully. The member is currently borrowing **4 books**.
 
+
 **Screenshot:**
-![BUG-01](screenshots/bug01_mượn_4_sach.png)
+![BUG-01](../screenshots/bug01_mượn_4_sach.png)
 
 ---
 
@@ -52,5 +53,6 @@ The system should reject the borrow and display a message related to **"Suspende
 ### Actual Result
 The system displays incorrect message: **"Member has expired. Cannot borrow book."**
 
+
 **Screenshot:**
-![BUG-02](screenshots/bug02_sai_thong_bao_tam_ngung.png)
+![BUG-02](../screenshots/bug02_sai_thong_bao_tam_ngung.png)
