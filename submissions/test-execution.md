@@ -2,42 +2,56 @@
 
 **Group:** STQA_Group_07  
 **Executor:** Hà Hiệp Hùng  
-**Execution Date:** 28/05/2026
+**Execution Date:** 29/05/2026  
+**Based on:** SRS v1.0
 
 ---
 
 ## 1. Test Execution Summary
 
-| Criteria                    | Quantity   |
-|-----------------------------|------------|
-| Total Test Cases Executed   | 15         |
-| Test Cases Passed           | 13         |
-| Test Cases Failed           | 2          |
-| Pass Rate                   | **86.7%**  |
+| Criteria                    | Quantity    |
+|-----------------------------|-------------|
+| Total Test Cases Executed   | **30**      |
+| Test Cases Passed           | **28**      |
+| Test Cases Failed           | **2**       |
+| Pass Rate                   | **93.3%**   |
 
-**Testing Scope:** REQ-01 to REQ-08 (focused on Login, Book Search, Borrow/Return, and Authorization).
+**Testing Scope:** All 8 functional requirements (REQ-01 to REQ-08)
 
 ---
 
 ## 2. Detailed Test Execution Results
 
-| TC-ID | Status | Actual Result                                      | Notes                                | Bug ID  |
-|-------|--------|----------------------------------------------------|--------------------------------------|---------|
-| TC-01 | **Pass** | Login successful, name and role displayed correctly | -                                    | -       |
-| TC-03 | **Pass** | Displayed "Member not found"                       | -                                    | -       |
-| TC-04 | **Pass** | Displayed "Incorrect password"                     | -                                    | -       |
-| TC-05 | **Pass** | Displayed "Please enter email and password"        | -                                    | -       |
-| TC-06 | **Pass** | Full book list displayed with correct information  | -                                    | -       |
-| TC-07 | **Pass** | Found book when searching "flutter"                | Case-insensitive search works        | -       |
-| TC-11 | **Pass** | Book borrowed successfully with success message    | -                                    | -       |
-| TC-13 | **Fail** | System allowed borrowing 4th book (limit is 3)    | Does not enforce 3-book limit        | BUG-01  |
-| TC-14 | **Fail** | Showed "Member has expired" instead of "Suspended" | Wrong error message for Suspended status | BUG-02  |
-| TC-15 | **Pass** | Showed "Member has expired" correctly              | -                                    | -       |
-| TC-19 | **Pass** | Book returned successfully with success message    | -                                    | -       |
+| TC-ID | Status | Actual Result | Notes | Bug ID |
+|-------|--------|---------------|-------|--------|
+| TC-01 | Pass   | Login successful, name and role displayed | - | - |
+| TC-02 | Pass   | Login successful, name and role displayed | - | - |
+| TC-03 | Pass   | Showed "Không tìm thấy thành viên" | - | - |
+| TC-04 | Pass   | Showed "Mật khẩu không đúng" | - | - |
+| TC-05 | Pass   | Showed "Vui lòng nhập email và mật khẩu" | - | - |
+| TC-06 | Pass   | All books displayed correctly | - | - |
+| TC-07 | Pass   | Found book with "flutter" search | Case-insensitive works | - |
+| TC-08 | Pass   | Author search worked correctly | - | - |
+| TC-09 | Pass   | Category filter worked correctly | - | - |
+| TC-10 | Pass   | Showed "Không tìm thấy sách nào" | - | - |
+| TC-11 | Pass   | Borrowed book successfully | - | - |
+| TC-12 | Pass   | Cannot borrow already borrowed book | - | - |
+| TC-13 | **Fail** | Allowed borrowing 4th book (limit is 3) | Violates REQ-04 | BUG-01 |
+| TC-14 | **Fail** | Showed "Member has expired" for Suspended member | Wrong error message | BUG-02 |
+| TC-15 | Pass   | Showed correct error for Expired member | - | - |
+| TC-19 | Pass   | Book returned successfully | - | - |
+| TC-20 | Pass   | Overdue warning displayed correctly | - | - |
+| TC-23 | Pass   | Added new member successfully | - | - |
+| TC-24 | Pass   | Invalid email rejected | - | - |
+| TC-25 | Pass   | Duplicate email rejected | - | - |
+| TC-27 | Pass   | Member cannot view others' records | - | - |
+| TC-28 | Pass   | Librarian can view all records | - | - |
+
+**Note:** Remaining test cases (TC-16, TC-17, TC-18, TC-21, TC-22, TC-26, TC-29, TC-30) were executed and all **Passed**.
 
 ---
 
-**Notes:**  
-- Total of 15 test cases were executed.  
-- 2 critical bugs were found in the Borrow Book module.  
-- Most core functions (Login, Search, Return) performed as expected.
+## 3. Overall Comments
+- Most functions work as expected according to SRS.
+- 2 critical bugs were discovered in the Borrow Book module (REQ-04).
+- Pass rate is high, but business rule enforcement needs improvement.
