@@ -81,3 +81,29 @@ a. Transition *T5* (Mark as lost) has no test case yet.
 b. Bug related to overdue checking belongs to transition *T3*.
 
 ---
+## Exercise 5: Oracle Strength Challenge
+
+### 1. Oracle Classification
+
+| Oracle | Detects BUG-06? | Explanation |
+|--------|------------------|-----------|
+| A (Null) | No | Only checks no crash |
+| B (Weak) | No | Only checks that a list is displayed |
+| C (Strong) | Yes | Checks exact number and category of books |
+
+Conclusion: Our test cases mostly use Weak Oracle. Should be improved to Strong Oracle by specifying expected book count and names.
+
+---
+
+## Exercise 6: Regression Test Selection
+
+Change: Maximum books per member reduced from 3 to 2.
+
+| TC | Description                    | Will FAIL? | Must Re-run? | Reason |
+|----|--------------------------------|------------|--------------|--------|
+| TC-01~TC-07 | Login, Search, Filter         | No         | No           | Not affected |
+| TC-08  | Borrow Book                    | Yes    | Yes      | Directly affected |
+| TC-09  | View Borrowed Books            | Possibly   | Yes      | Related to limit |
+| TC-10  | Return Book                    | No         | Yes          | Safety |
+
+--- 
