@@ -1,83 +1,77 @@
-# Test Cases — Bảng trường hợp kiểm thử
+# Test Cases — ABC Library Borrowing Management System
 
-> **Hướng dẫn**: Viết tối thiểu **20 TC** phủ đủ các chức năng chính (REQ-01 → REQ-08).
-> Xem [examples/sample-test-case.md](../examples/sample-test-case.md) để hiểu cách viết TC tốt.
-> Tự tổ chức và phân nhóm test case theo cách hợp lý nhất.
-
-| Thông tin | |
-|---|---|
-| **Nhóm** | `<!-- Tên nhóm -->` |
-| **Ngày tạo** | `<!-- DD/MM/YYYY -->` |
-| **Hệ thống** | https://stqa.rbc.vn |
-| **Tham chiếu** | SRS v1.0 |
+**Group:** STQA_Group_07  
+**Date:** 29/05/2026  
+**Based on:** SRS v1.0
 
 ---
 
-## Bước 1: Mô hình hóa miền đầu vào — Input Domain Modeling (IDM)
+## TC-01 to TC-05: REQ-01 — Login
 
-> 📖 **Textbook:** Chương 6 — *Input Domain Modeling*, Paul Ammann & Jeff Offutt.
->
-> **Trước khi viết Test Case**, nhóm **phải** phân tích miền đầu vào bằng bảng IDM bên dưới.
-> Mỗi chức năng cần xác định: **Đặc tính (Characteristic)**, **Phân vùng (Block/Partition)**, và **Giá trị đại diện (Value)**.
-
-### IDM — Đăng nhập (REQ-01)
-
-| Đặc tính (Characteristic) | Phân vùng (Block) | Giá trị đại diện (Value) | Kết quả mong đợi |
-|---|---|---|---|
-| Email có tồn tại trong DB? | Có | `librarian@library.com` | Đăng nhập thành công |
-| | Không | `noone@email.com` | Thông báo lỗi |
-| Mật khẩu có đúng? | Đúng | `admin123` | Đăng nhập thành công |
-| | Sai | `wrongpass` | Thông báo lỗi |
-| Ô nhập có rỗng? | Không rỗng | (giá trị bất kỳ) | Xử lý bình thường |
-| | Rỗng | `""` | Thông báo "Vui lòng nhập..." |
-
-### IDM — Tìm kiếm sách (REQ-03)
-
-| Đặc tính (Characteristic) | Phân vùng (Block) | Giá trị đại diện (Value) | Kết quả mong đợi |
-|---|---|---|---|
-| Từ khóa có tồn tại trong DB? | Có (tên sách) | `"Flutter"` | Hiển thị sách chứa "Flutter" |
-| | Có (tên tác giả) | `"Nguyễn"` | Hiển thị sách của tác giả Nguyễn |
-| | Không | `"XYZ123"` | Danh sách rỗng |
-| Phân biệt HOA/thường? | Chữ thường | `"flutter"` | Kết quả giống "Flutter" |
-| | Chữ HOA | `"FLUTTER"` | Kết quả giống "Flutter" |
-
-### IDM — Mượn sách (REQ-04, REQ-05)
-
-| Đặc tính (Characteristic) | Phân vùng (Block) | Giá trị đại diện (Value) | Kết quả mong đợi |
-|---|---|---|---|
-| Trạng thái sách? | Có sẵn | BOOK001 | Cho phép mượn |
-| | Đang mượn | BOOK003 | Không cho phép |
-| | Thất lạc | BOOK007 | Không cho phép |
-| Trạng thái thành viên? | Hoạt động | MEM002 | Cho phép mượn |
-| | Tạm ngưng | MEM004 | Từ chối, thông báo lỗi |
-| | Hết hạn | MEM005 | Từ chối, thông báo lỗi |
-| Số sách đang mượn? | < 3 (BVA: 0, 1, 2) | MEM006 (0 sách) | Cho phép mượn |
-| | = 3 (BVA: giới hạn) | MEM đã mượn 3 sách | Từ chối, thông báo vượt giới hạn |
-
-### IDM — `<!-- Nhóm tự bổ sung cho REQ-05 đến REQ-08 -->`
-
-| Đặc tính (Characteristic) | Phân vùng (Block) | Giá trị đại diện (Value) | Kết quả mong đợi |
-|---|---|---|---|
-| `<!-- Nhóm tự điền -->` | | | |
-
-> 💡 **Gợi ý kỹ thuật**: Sử dụng **Phân lớp tương đương (EP)** cho các phân vùng rời rạc, **Phân tích giá trị biên (BVA)** cho các phân vùng số (ví dụ: giới hạn 3 sách). Xem textbook §6.1–6.3.
+| TC-ID | Related REQ | Description | Type | Technique | Precondition | Test Data | Test Steps | Expected Result | Priority |
+|-------|-------------|-------------|------|-----------|--------------|-----------|------------|------------------|----------|
+| TC-01 | REQ-01 | Successful login as Librarian | Positive | - | Login page | Email: `librarian@library.com`<br>Password: `admin123` | 1. Enter email<br>2. Enter password<br>3. Click Login | Redirect to dashboard, show name + Librarian role | High |
+| TC-02 | REQ-01 | Successful login as Member | Positive | - | Login page | Email: `ba.nguyen@email.com`<br>Password: `password123` | 1. Enter email<br>2. Enter password<br>3. Click Login | Redirect to dashboard, show name + Member role | High |
+| TC-03 | REQ-01 | Login failed - Wrong email | Negative | EP | Login page | Email: `wrong@email.com`<br>Password: `admin123` | 1. Enter wrong email<br>2. Enter password<br>3. Click Login | Show error: "Không tìm thấy thành viên" | High |
+| TC-04 | REQ-01 | Login failed - Wrong password | Negative | EP | Login page | Email: `ba.nguyen@email.com`<br>Password: `wrongpass` | 1. Enter correct email<br>2. Enter wrong password<br>3. Click Login | Show error: "Mật khẩu không đúng" | High |
+| TC-05 | REQ-01 | Login failed - Empty fields | Negative | EP | Login page | Email: (empty)<br>Password: (empty) | 1. Leave fields empty<br>2. Click Login | Show error: "Vui lòng nhập email và mật khẩu" | High |
 
 ---
 
-## Bước 2: Test Cases
+## TC-06 to TC-10: REQ-02 & REQ-03 — View, Search & Filter Books
 
-<!-- Tự tổ chức bảng test case: có thể chia nhóm theo chức năng, theo REQ, hoặc theo luồng nghiệp vụ — tùy nhóm quyết định. -->
-<!-- Mỗi TC phải ánh xạ ngược về ít nhất 1 dòng trong bảng IDM ở Bước 1. -->
-
-| Mã TC | Mục tiêu kiểm thử | Tiền điều kiện | Bước thực hiện | Dữ liệu đầu vào | Kết quả mong đợi | REQ | Kỹ thuật |
-|-------|-------------------|---------------|---------------|-----------------|------------------|-----|---------|
-| | | | | | | | |
+| TC-ID | Related REQ | Description | Type | Technique | Precondition | Test Data | Test Steps | Expected Result | Priority |
+|-------|-------------|-------------|------|-----------|--------------|-----------|------------|------------------|----------|
+| TC-06 | REQ-02 | View all books after login | Positive | - | Logged in | - | 1. Go to Books tab | Display all books with correct status | High |
+| TC-07 | REQ-03 | Search book by name (case-insensitive) | Positive | EP | Logged in | Search: "flutter" | 1. Enter "flutter" in search | Show "Lập trình Flutter cơ bản" | High |
+| TC-08 | REQ-03 | Search by author | Positive | EP | Logged in | Search: "Nguyễn Minh Đức" | 1. Enter author name | Show all books by that author | High |
+| TC-09 | REQ-03 | Filter by category | Positive | - | Logged in | Filter: "Công nghệ" | 1. Select category "Công nghệ" | Only show books in that category | High |
+| TC-10 | REQ-03 | Search with no results | Negative | EP | Logged in | Search: "xyzabc123" | 1. Enter non-existing keyword | Show "Không tìm thấy sách nào" | Medium |
 
 ---
 
-## Tổng hợp
+## TC-11 to TC-18: REQ-04 — Borrow Book (Decision Table)
 
-| Nhóm chức năng | Số TC | REQ phủ | Kỹ thuật IDM áp dụng |
-|----------------|-------|---------|----------------------|
-| | | | |
-| **Tổng** | **<!-- ≥ 20 -->** | | |
+| TC-ID | Related REQ | Description | Type | Technique | Precondition | Test Data | Test Steps | Expected Result | Priority |
+|-------|-------------|-------------|------|-----------|--------------|-----------|------------|------------------|----------|
+| TC-11 | REQ-04 | Borrow book successfully | Positive | - | Logged in as member, book available | Borrow BOOK001 | 1. Click Borrow | Success message + book status changes to "Đang mượn" | High |
+| TC-12 | REQ-04 | Cannot borrow when book is already borrowed | Negative | EP | Book is borrowed | Borrow BOOK003 | 1. Try to borrow | Error message | High |
+| TC-13 | REQ-04 | Cannot borrow more than 3 books | Negative | BVA | Member has 3 books | Borrow 4th book | 1. Try to borrow 4th book | Reject + show limit message | High |
+| TC-14 | REQ-04 | Cannot borrow when member is Suspended | Negative | Decision Table | Login as `cu.le@email.com` | Borrow any available book | 1. Try to borrow | Error: Suspended message | High |
+| TC-15 | REQ-04 | Cannot borrow when member is Expired | Negative | Decision Table | Login as `binh.pham@email.com` | Borrow any available book | 1. Try to borrow | Error: Expired message | High |
+
+---
+
+## TC-19 to TC-22: REQ-05 — Return Book
+
+| TC-ID | Related REQ | Description | Type | Technique | Precondition | Test Data | Test Steps | Expected Result | Priority |
+|-------|-------------|-------------|------|-----------|--------------|-----------|------------|------------------|----------|
+| TC-19 | REQ-05 | Return book successfully | Positive | - | Has borrowed book | Return a book | 1. Go to Borrow/Return tab<br>2. Click Return | Success message + book status = "Có sẵn" | High |
+| TC-20 | REQ-05 | Return overdue book with warning | Positive | - | Overdue book | Return overdue book | 1. Return book | Success + overdue warning | High |
+
+---
+
+## TC-23 to TC-26: REQ-07 — Member Management
+
+| TC-ID | Related REQ | Description | Type | Technique | Precondition | Test Data | Test Steps | Expected Result | Priority |
+|-------|-------------|-------------|------|-----------|--------------|-----------|------------|------------------|----------|
+| TC-23 | REQ-07 | Add new member successfully (Librarian) | Positive | - | Login as Librarian | Valid email | 1. Go to Members tab<br>2. Add new member | Member created successfully | High |
+| TC-24 | REQ-07 | Invalid email (no dot) | Negative | EP | Login as Librarian | Email: `test@domain` | 1. Enter invalid email | Error message | High |
+| TC-25 | REQ-07 | Duplicate email | Negative | EP | Login as Librarian | Existing email | 1. Enter duplicate email | Error: Email already exists | High |
+
+---
+
+## TC-27 to TC-30: REQ-08 — Borrow Record Lookup
+
+| TC-ID | Related REQ | Description | Type | Technique | Precondition | Test Data | Test Steps | Expected Result | Priority |
+|-------|-------------|-------------|------|-----------|--------------|-----------|------------|------------------|----------|
+| TC-27 | REQ-08 | Member cannot view others' records | Negative | - | Login as Member | - | 1. Try to view other member's record | Access denied | High |
+| TC-28 | REQ-08 | Librarian can view all records | Positive | - | Login as Librarian | - | 1. Search by member ID | Can view all borrow records | High |
+
+---
+
+**Total Test Cases: 30**  
+**Techniques Used:** Equivalence Partitioning (EP), Boundary Value Analysis (BVA), Decision Table
+
+---
+

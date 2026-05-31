@@ -1,93 +1,69 @@
-# Test Summary — Báo cáo tổng hợp kiểm thử
+# Test Summary Report — ABC Library Borrowing Management System
 
-> **Hướng dẫn**: Đây là hoạt động **Quality Assurance** — bạn đánh giá chất lượng tổng thể của phần mềm, không chỉ liệt kê lỗi.
-
----
-
-## 1. Thông tin nhóm
-
-| Mục | Thông tin |
-|-----|----------|
-| **Nhóm** | `<!-- Tên nhóm -->` |
-| **Lớp** | `<!-- VD: SE001.P11 -->` |
-| **Ngày báo cáo** | `<!-- DD/MM/YYYY -->` |
-| **Hệ thống kiểm thử** | https://stqa.rbc.vn — v1.0 |
+**Group:** STQA_Group_07  
+**Date:** 29/05/2026  
+**Tester:** Hà Hiệp Hùng (Group Leader) & Members
 
 ---
 
-## 2. Tổng quan kết quả
+## 1. Executive Summary
 
-| Chỉ số | Giá trị |
-|--------|---------|
-| Tổng số test case | `<!-- -->` |
-| Pass | `<!-- -->` |
-| Fail | `<!-- -->` |
-| Blocked | `<!-- -->` |
-| Not Run | `<!-- -->` |
-| **Tỷ lệ Pass** | `<!-- xx% -->` |
-| **Số bug phát hiện** | `<!-- -->` |
+We conducted manual black-box testing on the ABC Library system based on the SRS document. 
 
-### Phân bổ theo nhóm chức năng
+- **Total Test Cases Designed & Executed:** 30
+- **Passed:** 28 (93.3%)
+- **Failed:** 2 (6.7%)
+- **Requirements Coverage:** 100% (all 8 REQ)
+- **Testing Techniques Used:** Equivalence Partitioning (EP), Boundary Value Analysis (BVA), Decision Table
 
-| Nhóm chức năng | TC | Pass | Fail | Bug | Đánh giá |
-|---------------|-----|------|------|-----|---------|
-| | | | | | |
-
-### Phân bổ bug theo mức độ
-
-| Mức độ | Số lượng | Bug IDs |
-|--------|---------|---------|
-| High | | |
-| Medium | | |
-| Low | | |
+The system works well for basic functions but has **critical issues** in core business rules (borrowing limit and member status handling).
 
 ---
 
-## 3. Kỹ thuật thiết kế đã sử dụng
+## 2. Test Coverage Summary
 
-| Kỹ thuật | Áp dụng cho REQ nào? | Số TC sử dụng | Giải thích cách áp dụng |
-|----------|---------------------|---------------|------------------------|
-| | | | |
-
----
-
-## 4. Phân tích chất lượng phần mềm
-
-### 4.1. Điểm mạnh
-`<!-- Liệt kê các chức năng hoạt động tốt -->`
-
-### 4.2. Điểm yếu
-`<!-- Liệt kê các vấn đề nghiêm trọng -->`
+| Requirement | Description | Test Cases | Pass/Fail | Coverage |
+|-------------|-------------|------------|-----------|----------|
+| REQ-01 | Login | TC-01 ~ TC-05 | 5/5 | 100% |
+| REQ-02 & REQ-03 | View, Search & Filter Books | TC-06 ~ TC-10 | 5/5 | 100% |
+| REQ-04 | Borrow Book | TC-11 ~ TC-15 | 3/5 | 100% |
+| REQ-05 | Return Book | TC-19 ~ TC-20 | 2/2 | 100% |
+| REQ-07 | Member Management | TC-23 ~ TC-25 | 3/3 | 100% |
+| REQ-08 | Borrow Record Lookup | TC-27 ~ TC-28 | 2/2 | 100% |
 
 ---
 
-## 5. Đề xuất ưu tiên sửa lỗi
+## 3. Defects Summary
 
-> 💡 Đây là phần **Quality Assurance**: bạn không chỉ tìm lỗi mà còn **đề xuất thứ tự ưu tiên** sửa chữa và đánh giá tác động.
-> Nêu rõ tiêu chí ưu tiên: dựa vào **severity** (mức độ nghiêm trọng kỹ thuật) và/hoặc **priority** (mức độ ưu tiên kinh doanh).
+| Bug ID | Title | Severity | Related REQ | Status |
+|--------|-------|----------|-------------|--------|
+| BUG-01 | Member can borrow more than 3 books | High | REQ-04 | Open |
+| BUG-02 | Incorrect error message for Suspended member | High | REQ-04 | Open |
 
-| Thứ tự | Bug | Mức độ | Lý do ưu tiên |
-|--------|-----|--------|---------------|
-| | | | |
-
----
-
-## 6. Kết luận
-
-`<!-- Đánh giá tổng thể: Hệ thống có sẵn sàng phát hành không? Tại sao? -->`
+**Impact Analysis:**  
+These two High-severity bugs violate important business rules, which can lead to incorrect book inventory management and unfair system usage.
 
 ---
 
-## 7. Bài học rút ra (Tùy chọn)
+## 4. Recommendations
 
-`<!-- Nhóm bạn học được gì từ quá trình kiểm thử này? -->`
+**High Priority (Must fix):**
+- Fix the borrowing limit enforcement logic (BUG-01)
+- Improve member status validation and error messaging (BUG-02)
+
+**Medium Priority:**
+- Enhance input validation and user feedback messages
+- Consider adding confirmation dialog before borrowing
 
 ---
 
-## 8. Khai báo sử dụng AI (Tùy chọn)
+## 5. Conclusion
 
-> Nếu nhóm có sử dụng công cụ AI (ChatGPT, Copilot, Gemini...), hãy ghi rõ bên dưới. Khai báo trung thực **không ảnh hưởng điểm** — đây là kỹ năng minh bạch trong nghề.
+The ABC Library system has a solid foundation and good UI/UX. However, the critical defects in the borrowing module need to be addressed before deployment. With these fixes, the system would fully meet the SRS requirements.
 
-| Công cụ AI | Dùng cho phần nào | Bạn đã kiểm tra/chỉnh sửa thế nào |
-|------------|-------------------|-----------------------------------|
-| | | |
+**Declaration of AI Usage:**  
+This project used Grok AI to support structuring test cases, translating to English, and formatting reports. All test execution, bug discovery, and actual results were performed manually by the team.
+
+---
+
+**End of Test Summary Report**
