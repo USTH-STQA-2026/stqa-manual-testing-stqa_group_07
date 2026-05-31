@@ -107,3 +107,49 @@ Change: Maximum books per member reduced from 3 to 2.
 | TC-10  | Return Book                    | No         | Yes          | Safety |
 
 --- 
+## Exercise 7: Kill the Mutant
+
+*Borrowing Limit Mutant:*
+
+| Books Borrowed | Correct Code (>= 3) | Mutant Code (> 3) | Killed? |
+|----------------|-----------------------|---------------------|---------|
+| 2              | Allow                 | Allow               | No      |
+| *3*          | Reject                | Allow               | *Yes* |
+| 4              | Reject                | Reject              | No      |
+
+*Conclusion:* Boundary Value Analysis is very effective at killing ROR mutants.
+
+---
+
+## Exercise 8: The Logic Trap
+
+*Active Clause Coverage Table:*
+
+| TC | A | B | C | P     | Major Clause | Explanation |
+|----|---|---|---|-------|--------------|-------------|
+| 1  | T | T | T | True  | A            | - |
+| 2  | F | T | T | False | A            | Flip A → P changes |
+| 3  | T | T | T | True  | B            | - |
+| 4  | T | F | T | False | B            | Flip B → P changes |
+| 5  | T | T | T | True  | C            | - |
+| 6  | T | T | F | False | C            | Flip C → P changes |
+
+*Conclusion:* ACC needs *6 test cases*, while Predicate Coverage only needs 2.
+
+---
+
+## Exercise 9: Flaky Tests
+
+### 1. Experiment
+Using time.sleep(0.1) will cause *random failures* (Flaky Tests).
+
+### 2. Explanation
+wait_for_flutter waits based on *actual UI state* (Deterministic).  
+time.sleep waits a fixed time (Non-deterministic → Flaky).
+
+### 3. Conclusion
+Long sleep sacrifices *speed* and *immediate verification*, violating the textbook principle of "good AND fast".
+
+---
+
+*End of Group Exercises*
