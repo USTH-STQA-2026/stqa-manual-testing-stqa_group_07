@@ -42,3 +42,42 @@ b. *Improved Expected Result:*
    - Strong: "Display message 'No books found' and the book list must be completely empty"
 
 ---
+## Exercise 3: Who Guards the Software? (Test Suite vs SRS)
+
+### 2. Discussion Questions
+a. Developers could implement part of the system, but *not completely*, because test cases lack many detailed business rules (borrowing limit, member status handling, specific error messages…).
+
+b. Information readable from TC-08 (Borrow Book):
+   | # | Business Information |
+   |---|----------------------|
+   | 1 | Book must be Available |
+   | 2 | Member must be Active |
+   | 3 | Maximum 3 books per member |
+
+c. Limitations of "Tests as Specification": Missing unconsidered negative cases, non-functional requirements, and difficulty updating when business rules change.
+
+---
+
+## Exercise 4: Book Lifecycle — Finite State Machine (FSM)
+
+### Step 3: Test Paths for Edge Coverage
+
+| Test Path | State Sequence       | Transitions Covered |
+|-----------|----------------------|---------------------|
+| TP1       | S1 → S2 → S1         | T1, T2              |
+| TP2       | S1 → S2 → S3 → S1    | T1, T3, T4          |
+| TP3       | S1 → S2 → S3 → S4    | T1, T3, T5          |
+
+### Step 4: Mapping to Test Cases
+
+| Test Path | Corresponding TC       | Covered? |
+|-----------|------------------------|----------|
+| TP1       | TC-11 + TC-19          | Yes      |
+| TP2       | TC-11 + TC-20          | Yes      |
+| TP3       | Not covered yet        | No       |
+
+*Discussion:*
+a. Transition *T5* (Mark as lost) has no test case yet.
+b. Bug related to overdue checking belongs to transition *T3*.
+
+---
